@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key key, @required this.title}) : super(key: key);
 
 
 
@@ -41,9 +41,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextDetector textDetector = GoogleMlKit.vision.textDetector();
   bool isBusy = false;
-
   String process_text="";
-  CustomPaint? customPaint;
+
   final ImagePicker _picker = ImagePicker();
   @override
   void dispose() async {
@@ -74,8 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
-          final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-          File file = File(photo!.path);
+          final XFile photo = await _picker.pickImage(source: ImageSource.camera);
+          File file = File(photo.path);
       InputImage image=InputImage.fromFile(file);
           processImage(image);
 
